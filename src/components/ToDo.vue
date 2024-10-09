@@ -1,6 +1,6 @@
 <template>
     <div :class="['todo-app', isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800']">
-      <header class="mb-4">
+      <header class="mb-4 text-center md:text-left border-b border-gray-300 pb-4">
         <h1 class="text-3xl font-bold">My Year-Long To-Do List</h1>
         <button
           @click="toggleDarkMode"
@@ -11,11 +11,11 @@
       </header>
   
       <section class="mb-6">
-        <div class="flex mb-4">
+        <div class="flex flex-col mb-4">
           <input
             type="date"
             v-model="selectedDate"
-            class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 outline-none transition"
+            class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 transition outline-none"
           />
         </div>
   
@@ -24,16 +24,16 @@
             v-model="newTask"
             @keyup.enter="addTask"
             placeholder="Add a new task"
-            class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 outline-none transition"
+            class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 transition outline-none"
           />
           <input
             type="date"
             v-model="selectedDueDate"
-            class="mt-2 w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 outline-none transition"
+            class="mt-2 w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 transition outline-none"
           />
           <select
             v-model="selectedPriority"
-            class="mt-2 w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 outline-none transition"
+            class="mt-2 w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 transition outline-none"
           >
             <option value="">Select Priority</option>
             <option value="high">High</option>
@@ -55,10 +55,10 @@
           <li
             v-for="(task, index) in tasksForSelectedDate"
             :key="index"
-            class="flex flex-col justify-start items-start p-4 bg-gray-100 rounded-md shadow"
+            class="flex flex-col p-4 bg-gray-100 rounded-md shadow space-y-2 md:space-y-0"
             :class="{ 'line-through text-gray-400': task.completed }"
           >
-            <div class="flex items-center w-full justify-between">
+            <div class="flex justify-between items-center">
               <div class="flex items-center">
                 <input
                   type="checkbox"
@@ -76,23 +76,23 @@
             </div>
   
             <!-- Subtask Input Field -->
-            <div class="mt-2 flex items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
               <input
                 v-model="newSubtask"
                 @keyup.enter="addSubtask(index)"
                 placeholder="Add a subtask"
-                class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 outline-none transition"
+                class="w-full p-2 rounded-md border border-gray-300 focus:border-purple-600 transition outline-none"
               />
               <button
                 @click="addSubtask(index)"
-                class="bg-purple-600 text-white mt-2 ml-2 p-2 rounded-md transition hover:bg-purple-800"
+                class="bg-purple-600 text-white p-2 rounded-md transition hover:bg-purple-800"
               >
                 Add Subtask
               </button>
             </div>
   
             <!-- Subtasks List -->
-            <ul class="subtask-list ml-5 space-y-2">
+            <ul class="ml-5 space-y-2">
               <li
                 v-for="(subtask, subIndex) in task.subtasks"
                 :key="subIndex"
@@ -194,56 +194,4 @@
   };
   </script>
   
-  <style scoped>
-  .todo-app {
-    font-family: 'Roboto', sans-serif;
-    padding: 20px; /* Add padding for better layout */
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #6200ea;
-  }
-  
-  .line-through {
-    text-decoration: line-through;
-  }
-  
-  .bg-gray-800 {
-    background-color: #2d3748;
-  }
-  
-  .text-white {
-    color: white;
-  }
-  
-  .bg-gray-300 {
-    background-color: #d1d5db;
-  }
-  
-  .bg-purple-600 {
-    background-color: #6b46c1;
-  }
-  
-  .bg-purple-800 {
-    background-color: #553c9a;
-  }
-  
-  .bg-red-500 {
-    background-color: #f56565;
-  }
-  
-  .bg-red-700 {
-    background-color: #c53030;
-  }
-  
-  header {
-    border-bottom: 1px solid #ccc; /* Add a bottom border to the header */
-    padding-bottom: 10px; /* Add padding below header */
-  }
-  
-  section {
-    margin-bottom: 20px; /* Add margin between sections */
-  }
-  </style>
   

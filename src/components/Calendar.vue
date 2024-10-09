@@ -1,27 +1,39 @@
 <template>
-    <div class="calendar bg-white p-6 rounded-xl shadow-lg mx-auto max-w-2xl">
+    <div class="calendar bg-white p-4 rounded-xl shadow-lg mx-auto max-w-full md:max-w-2xl">
       <div class="calendar-header flex justify-between items-center mb-6">
-        <button @click="prevMonth" class="nav-button bg-blue-600 text-white rounded-full p-2 transition hover:bg-blue-800">
+        <button
+          @click="prevMonth"
+          class="nav-button bg-blue-600 text-white rounded-full p-2 transition hover:bg-blue-800"
+        >
           ←
         </button>
-        <span class="month-year text-2xl font-semibold text-gray-800">
+        <span class="month-year text-lg md:text-2xl font-semibold text-gray-800">
           {{ currentMonth }} {{ currentYear }}
         </span>
-        <button @click="nextMonth" class="nav-button bg-blue-600 text-white rounded-full p-2 transition hover:bg-blue-800">
+        <button
+          @click="nextMonth"
+          class="nav-button bg-blue-600 text-white rounded-full p-2 transition hover:bg-blue-800"
+        >
           →
         </button>
       </div>
       <div class="calendar-body grid grid-cols-7 gap-1">
-        <div class="calendar-weekday text-center font-medium text-gray-500 uppercase py-2" v-for="day in weekdays" :key="day">
+        <div
+          class="calendar-weekday text-center font-medium text-gray-500 uppercase py-2 text-xs sm:text-sm md:text-base"
+          v-for="day in weekdays"
+          :key="day"
+        >
           {{ day }}
         </div>
         <div
-          class="calendar-day relative text-center border border-gray-200 h-28 hover:bg-blue-50 transition cursor-pointer"
+          class="calendar-day relative text-center border border-gray-200 h-20 sm:h-24 md:h-28 hover:bg-blue-50 transition cursor-pointer"
           v-for="day in daysInMonth"
           :key="day.date"
-          :class="{ empty: day.empty, today: isToday(day.date) }"
+          :class="{ 'bg-blue-100 border-blue-500': isToday(day.date), 'opacity-50 pointer-events-none': day.empty }"
         >
-          <span v-if="!day.empty" class="absolute top-2 right-2 text-sm font-semibold">{{ day.date }}</span>
+          <span v-if="!day.empty" class="absolute top-1 right-1 text-xs sm:text-sm font-semibold">
+            {{ day.date }}
+          </span>
         </div>
       </div>
     </div>
@@ -79,14 +91,5 @@
   </script>
   
   <style scoped>
-  .today {
-    background-color: #e3f2fd;
-    border: 2px solid #42a5f5;
-    color: #1e88e5;
-  }
-  .empty {
-    background-color: transparent;
-    pointer-events: none;
-  }
   </style>
   

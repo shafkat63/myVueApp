@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
-    <header>
-      <h1>My Vue App</h1>
-      <nav>
+  <div id="app" class="flex flex-col min-h-screen bg-gray-100">
+    <header class="flex justify-between items-center bg-purple-600 p-4 rounded-lg shadow-lg">
+      <h1 class="text-white text-2xl font-medium">My Vue App</h1>
+      <nav class="flex flex-wrap gap-4">
         <router-link to="/cal" class="nav-link">Calculator</router-link>
         <router-link to="/calendar" class="nav-link">Calendar</router-link>
         <router-link to="/todo" class="nav-link">To Do</router-link>
       </nav>
     </header>
-    <main>
+    <main class="flex-grow mt-4 p-4 bg-white rounded-lg shadow-md">
       <router-view></router-view> <!-- Renders the current route's component -->
     </main>
   </div>
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style>
-/* Styling for a more modern look */
+/* Importing Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 * {
@@ -32,40 +32,9 @@ export default {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
-  line-height: 1.6;
 }
 
-/* Container styling */
-#app {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Header styling */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #6200ea;
-  padding: 15px 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-  color: white;
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-}
-
+/* Styling for links */
 .nav-link {
   color: white;
   text-decoration: none;
@@ -80,16 +49,7 @@ nav {
   color: #ffffff;
 }
 
-/* Main content styling */
-main {
-  margin-top: 20px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Mobile responsiveness */
+/* Responsive styling for mobile */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -97,13 +57,17 @@ main {
   }
 
   nav {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
     margin-top: 10px;
   }
 
   .nav-link {
     padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
   }
 }
 </style>
