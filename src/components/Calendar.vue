@@ -122,7 +122,7 @@
   /* Responsive styles */
   @media (max-width: 640px) {
     .calendar-day {
-      height: 3rem; /* Smaller height for mobile screens */
+      height: 2rem; /* Smaller height for mobile screens */
     }
   }
   </style>
