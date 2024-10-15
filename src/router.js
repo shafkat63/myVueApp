@@ -4,6 +4,7 @@ import Calculator from './components/Calculator.vue';
 import Calendar from './components/Calendar.vue';
 import ToDo from './components/ToDo.vue';
 import PurchaseOrderTable from './components/PurchaseOrderTable.vue';
+import Base from './components/base.vue';
 
 const routes = [
     {
@@ -27,13 +28,9 @@ const routes = [
         component: PurchaseOrderTable,
     },
     {
-        path: '/msm',
+        path: '/',
         name: 'Muhtasir Shafkat',
-        component: {
-          render() {
-            return h('div', 'Muhtasir Shafkat'); // Render the string directly
-          },
-        },
+        component: Base,
       },
 ];
 
