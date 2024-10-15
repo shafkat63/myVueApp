@@ -2,7 +2,8 @@
   <div id="app" class="flex flex-col min-h-screen bg-gray-100">
     <!-- Top Navbar -->
     <header class="bg-white shadow-md flex justify-between items-center p-4">
-  <h1 class="text-gray-800 font-medium">My Vue App</h1>
+      <a href="/">  <h1 class="text-gray-800 font-medium">My Vue App</h1>
+      </a>
   
   <div class="flex items-center">
     <img
