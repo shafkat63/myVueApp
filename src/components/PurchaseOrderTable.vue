@@ -1,11 +1,20 @@
 <template>
-	<div class="purchase-order-table p-4">
-		<button
+    <div class="p-4 flex flex-row ">
+        <button
 			@click="openModal"
-			class="new-order-button bg-green-500 text-white py-2 px-4 rounded mb-4 hover:bg-green-600"
+			class="new-order-button bg-green-500 text-white py-2 px-4 rounded mb-4 m-2  hover:bg-green-600"
 		>
 			New
 		</button>
+        <button
+			@click="downloadPDF"
+			class="bg-red-500 text-white py-2 px-4 rounded mb-4 m-2 hover:bg-red-600"
+		>
+			Download PDF
+		</button>
+    </div>
+	<div class="purchase-order-table p-4">
+		
 
 		<!-- Modal for creating a new purchase order -->
 		<div
@@ -186,6 +195,8 @@
 
 <script>
 import { ref, computed, onMounted } from "vue";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 export default {
 	setup() {
@@ -214,6 +225,23 @@ export default {
 			} catch (error) {
 				console.error("Error fetching JSON data:", error);
 			}
+		};
+
+        const downloadPDF = () => {
+			const element = document.querySelector("table");
+			html2canvas(element).then((canvas) => {
+				const imgData = canvas.toDataURL("image/png");
+				const pdf = new jsPDF({
+					orientation: "portrait",
+					unit: "pt",
+					format: "a4",
+				});
+				const imgProps = pdf.getImageProperties(imgData);
+				const pdfWidth = pdf.internal.pageSize.getWidth();
+				const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+				pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+				pdf.save("purchase-orders.pdf");
+			});
 		};
 
 		onMounted(() => {
@@ -315,6 +343,7 @@ export default {
 			closeModal,
 			newOrder,
 			createOrder,
+            downloadPDF,
 		};
 	},
 };
