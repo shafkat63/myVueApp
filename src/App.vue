@@ -1,28 +1,45 @@
 <template>
   <div id="app" class="flex flex-col min-h-screen bg-gray-100">
-    <header class="flex justify-between items-center bg-purple-600 p-4 rounded-lg shadow-lg">
-      <h1 class="text-white text-2xl font-medium">My Vue App</h1>
-      <nav class="flex flex-wrap gap-4">
-        <router-link to="/cal" class="nav-link">Calculator</router-link>
-        <router-link to="/calendar" class="nav-link">Calendar</router-link>
-        <router-link to="/todo" class="nav-link">To Do</router-link>
-      </nav>
+    <!-- Top Navbar -->
+    <header class="bg-white shadow-md flex justify-between items-center p-4">
+      <div class="flex items-center">
+        <img
+          src="/meli.jpg" 
+          alt="User Avatar" 
+          class="rounded-full w-10 h-10 mr-2"
+        />
+        <span class="text-gray-800 font-medium">Muhtasir Shafkat</span>
+      </div>
     </header>
-    <main class="flex-grow mt-4 p-4 bg-white rounded-lg shadow-md">
-      <router-view></router-view> <!-- Renders the current route's component -->
-    </main>
+
+    <div class="flex flex-grow">
+      <aside class="w-64 bg-purple-600 p-4 rounded-lg shadow-lg">
+        <h1 class="text-white text-2xl font-medium mb-4">My Vue App</h1>
+        <nav class="flex flex-col gap-4">
+          <router-link to="/cal" class="nav-link">Calculator</router-link>
+          <router-link to="/calendar" class="nav-link">Calendar</router-link>
+          <router-link to="/todo" class="nav-link">To Do</router-link>
+          <router-link to="/order" class="nav-link">Order</router-link>
+        </nav>
+      </aside>
+
+      <main class="flex-grow mt-4 p-4 bg-white rounded-lg shadow-md">
+        <router-view></router-view>
+        <!-- Renders the current route's component -->
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 };
 </script>
 
 <style>
 /* Importing Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 * {
   margin: 0;
@@ -31,7 +48,7 @@ export default {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* Styling for links */
@@ -51,23 +68,16 @@ body {
 
 /* Responsive styling for mobile */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
+  #app {
+    flex-direction: column; /* Stack sidebar and main content on mobile */
   }
 
-  nav {
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10px;
+  aside {
+    width: 100%; /* Full width for mobile */
   }
 
-  .nav-link {
-    padding: 10px 20px;
-  }
-
-  h1 {
-    font-size: 1.5rem;
+  main {
+    margin-top: 10px; /* Spacing between sidebar and main content */
   }
 }
 </style>

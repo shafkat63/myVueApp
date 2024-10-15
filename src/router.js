@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Calculator from './components/Calculator.vue';
 import Calendar from './components/Calendar.vue';
 import ToDo from './components/ToDo.vue';
+import PurchaseOrderTable from './components/PurchaseOrderTable.vue';
 
 const routes = [
     {
@@ -19,6 +20,11 @@ const routes = [
         path: '/todo',
         name: 'Todo',
         component: ToDo,
+    },
+    {
+        path: '/order',
+        name: 'order',
+        component: PurchaseOrderTable,
     },
     {
         path: '/msm',
