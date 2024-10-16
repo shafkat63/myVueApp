@@ -211,7 +211,7 @@ export default {
 			purchaseDate: "",
 			supplier: "",
 			consignee: "",
-			purchaseType: "Standard", // Add purchaseType with default value
+			purchaseType: "Standard", 
 			store: "", // Add store field
 			status: "Pending",
 		});
